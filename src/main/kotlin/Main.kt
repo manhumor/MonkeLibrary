@@ -1,5 +1,8 @@
 package ua.manhumor
 
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.jsonObject
+import kotlinx.serialization.json.jsonPrimitive
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.interactions.IntegrationType
 import net.dv8tion.jda.api.interactions.InteractionContextType
@@ -8,11 +11,19 @@ import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.Commands
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 import org.slf4j.LoggerFactory
+import java.io.File
 
 fun main() {
     val logger = LoggerFactory.getLogger("Main")
 
-    val jda = JDABuilder.createDefault("HERE_TOKEN")
+    val file = File("src/main/resources/settings.json")
+    val jsonString = file.readText()
+
+    val jsonObject = Json.parseToJsonElement(jsonString).jsonObject
+
+    val token = jsonObject["token"]?.jsonPrimitive?.content
+
+    val jda = JDABuilder.createDefault(token)
         .addEventListeners(Listener(logger))
         .build()
 

@@ -25,9 +25,9 @@ class Listener(
             "info" -> {
                 e.replyEmbeds(this.embed)
                     .addActionRow(
-                        Button.link("https://github.com", "Github"),
+                        Button.link("https://github.com/manhumor/MonkeLibrary", "Github"),
                         Button.link("https://discord.gg/jXekNtN6pz", "Discord"),
-                        Button.link("https://discord.com/oauth2/authorize?client_id=1329204808833306706", "Add bot")
+                        Button.link("https://discord.com/oauth2/authorize?client_id=1329204808833306706", "Add")
                     ).queue()
             }
             "vutuv" -> {
