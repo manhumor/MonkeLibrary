@@ -11,13 +11,13 @@ import net.dv8tion.jda.api.interactions.commands.OptionType
 import net.dv8tion.jda.api.interactions.commands.build.Commands
 import net.dv8tion.jda.api.interactions.commands.build.OptionData
 import org.slf4j.LoggerFactory
-import java.io.File
 
 fun main() {
     val logger = LoggerFactory.getLogger("Main")
 
-    val file = File("src/main/resources/settings.json")
-    val jsonString = file.readText()
+    val settingsInput = {}.javaClass.classLoader.getResourceAsStream("settings.json")
+    
+    val jsonString = settingsInput.bufferedReader().use { it.readText() }
 
     val jsonObject = Json.parseToJsonElement(jsonString).jsonObject
 
