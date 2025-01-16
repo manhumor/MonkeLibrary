@@ -24,6 +24,18 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
+tasks {
+    test {
+        useJUnitPlatform()
+    }
+    withType<Jar> {
+        manifest {
+            attributes["Main-Class"] = "ua.manhumor.MainKt"
+        }
+    }
+}
+
 kotlin {
     jvmToolchain(21)
 }
